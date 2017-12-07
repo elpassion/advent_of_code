@@ -4,6 +4,7 @@ use std::io::prelude::*;
 
 fn main() {
     // ...snip...
+    let filename = "input.txt";
     println!("In file {}", filename);
 
     let mut f = File::open(filename).expect("file not found");
