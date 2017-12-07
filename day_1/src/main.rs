@@ -12,11 +12,26 @@ fn main() {
     f.read_to_string(&mut contents)
         .expect("something went wrong reading the file");
 
-    println!("With text:\n{}", contents);
+    let result = adder(contents);
+    println!("With text:\n{}", result);
 }
 
-pub fn adder(input: &str) -> i32 {
-    return 2;
+pub fn adder(input: String) -> u32 {
+    let mut sum = 0;
+    let numbers: Vec<u32> = input.chars()
+        .map(|c| c.to_digit(10).unwrap())
+        .collect();
+
+    for n in 0..numbers.len()-1 {
+        let mut next_index = n + 1;
+        if n == numbers.len()-1 {
+            next_index = 0;
+        }
+        if numbers[n] == numbers[next_index] {
+            sum += numbers[n];
+        }
+    }
+    return sum;
 }
 
 #[cfg(test)]
@@ -25,7 +40,11 @@ mod tests {
 
     #[test]
     fn test_1() {
-        let input = "11";
-        assert_eq!(2, adder(input));
+        assert_eq!(3, adder("111"));
+    }
+
+    #[test]
+    fn test_2() {
+        assert_eq!(4, adder("22"));
     }
 }
