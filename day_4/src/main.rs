@@ -7,22 +7,22 @@ fn main() {
     let mut input = String::new();
     let mut valid_lines = 0;
 
-    f.read_to_string(&mut input);
+    f.read_to_string(&mut input).expect("can't read file");
 
-    let lines = input.lines();
-
-    for line in lines {
-        let mut words_count = HashMap::new();
-
-        for word in line.split_whitespace() {
-            let counter = words_count.entry(word).or_insert(0);
-            *counter += 1;
-        }
-
-        if !words_count.values().any(|&x| x > 1) {
-          valid_lines += 1;
-        }
+    for line in input.lines() {
+        if valid_line(line) { valid_lines += 1; }
     }
 
     println!("{}", valid_lines);
+}
+
+fn valid_line(line: &str) -> bool {
+    let mut words_count = HashMap::new();
+
+    for word in line.split_whitespace() {
+        let counter = words_count.entry(word).or_insert(0);
+        *counter += 1;
+    }
+
+    !words_count.values().any(|&x| x > 1)
 }
