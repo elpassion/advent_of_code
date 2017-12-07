@@ -42,8 +42,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_one_one() {
+    fn test_1() {
         assert_eq!(1, adder(String::from("1")));
+    }
+
+    #[test]
+    fn test_111() {
+        assert_eq!(3, adder(String::from("111")));
+    }
+
+    #[test]
+    fn test_22() {
+        assert_eq!(4, adder(String::from("22")));
     }
 
     #[test]
@@ -64,15 +74,5 @@ mod tests {
     #[test]
     fn test_91212129() {
       assert_eq!(9, adder(String::from("91212129")));
-    }
-
-    #[test]
-    fn test_1() {
-        assert_eq!(3, adder(String::from("111")));
-    }
-
-    #[test]
-    fn test_2() {
-        assert_eq!(4, adder(String::from("22")));
     }
 }
