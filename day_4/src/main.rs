@@ -20,7 +20,13 @@ fn valid_line(line: &str) -> bool {
     let mut words_count = HashMap::new();
 
     for word in line.split_whitespace() {
-        let counter = words_count.entry(word).or_insert(0);
+        let mut chars: Vec<char> = word.chars().collect();
+        chars.sort();
+
+        let mut string = String::new();
+        string.extend(chars);
+
+        let counter = words_count.entry(string).or_insert(0);
         *counter += 1;
     }
 
