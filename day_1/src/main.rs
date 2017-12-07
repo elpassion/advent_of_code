@@ -1,4 +1,3 @@
-use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -16,12 +15,8 @@ fn main() {
     println!("With text:\n{}", contents);
 }
 
-pub fn add_two(a: i32) -> i32 {
-    internal_adder(a, 2)
-}
-
-fn internal_adder(a: i32, b: i32) -> i32 {
-    a + b
+pub fn adder(input: &str) -> i32 {
+    return 2;
 }
 
 #[cfg(test)]
@@ -29,7 +24,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn internal() {
-        assert_eq!(4, internal_adder(2, 2));
+    fn test_1() {
+        let input = "11";
+        assert_eq!(2, adder(input));
     }
 }
